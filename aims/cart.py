@@ -6,7 +6,7 @@ class Cart:
         self.items = []
 
     def add_dvd(self, dvd):
-        if len(self.items) > MAX_NUMBERS_ORDERED:
+        if len(self.items) >= MAX_NUMBERS_ORDERED:
             return False
         self.items.append(dvd)
         print("The disc has been added")
