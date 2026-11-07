@@ -9,6 +9,7 @@ Mọi thay đổi đáng chú ý của dự án được ghi lại trong tệp n
 ### Added
 
 - `Cart.sort_by_title()` và `Cart.sort_by_cost()` sắp xếp giỏ hàng.
+- `search_by_category()` tìm đĩa theo thể loại.
 
 ## [1.0.0] - 2026-11-07
 
