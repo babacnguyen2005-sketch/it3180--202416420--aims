@@ -6,6 +6,12 @@ Mọi thay đổi đáng chú ý của dự án được ghi lại trong tệp n
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-11-07
+
+### Fixed
+
+- `search_by_title()` không phân biệt hoa thường.
+
 ## [1.0.0] - 2026-11-07
 
 ### Added
