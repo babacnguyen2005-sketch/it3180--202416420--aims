@@ -6,6 +6,8 @@ Mọi thay đổi đáng chú ý của dự án được ghi lại trong tệp n
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-07
+
 ### Added
 
 - `Cart.sort_by_title()` và `Cart.sort_by_cost()` sắp xếp giỏ hàng.
