@@ -1,0 +1,12 @@
+# Lab 03 — Bugfix, conflict và hoàn tác
+
+- Merge base là tổ tiên chung tốt nhất của hai commit, dùng làm gốc so sánh ba chiều khi merge; xem bằng `git merge-base <nhánh-A> <nhánh-B>`.
+- Test phải FAIL trước fix để chứng minh nó bắt đúng lỗi hiện có; PASS sau fix giúp chứng minh sửa lỗi. Test giỏ 20 DVD (`8c373f3`) FAIL với `AssertionError: True is not false` ở DVD thứ 21, rồi PASS sau `e652076`. Test giảm giá 100 → 80 cũng FAIL trước `b66fae0` — công thức cũ trả `20` và không kiểm tra phần trăm — rồi PASS sau fix. Không giả lập kết quả.
+- Bugfix tạo từ feature phải PR vào feature khi nó phụ thuộc thay đổi chưa có trên master; PR thẳng master có thể mang theo tính năng chưa sẵn sàng. `bugfix/discount-calculation` (PR #8) được merge vào `feature/discount`, sau đó PR #9 mới đưa cả tính năng đã sửa vào master.
+- Reset dịch chuyển HEAD/nhánh: `--soft` giữ index và working tree; `--mixed` reset index, giữ working tree; `--hard` reset cả index và working tree, làm mất thay đổi tracked chưa lưu. Thực hành trên nhánh tạm: `--soft` để `reset-demo-3.txt` ở trạng thái staged; `--mixed` để `reset-demo-2.txt`/`reset-demo-3.txt` thành untracked; `--hard` đưa HEAD về `9b440dc`. Không reset commit của bài lab.
+- Revert tạo commit đảo thay đổi, không viết lại lịch sử. Master/release dùng revert vì đã chia sẻ và phải đi qua PR.
+- Conflict thật xuất hiện khi hai nhánh cùng baseline sửa cùng dòng thêm DVD: `feature/vietnamese-messages` (#10) và `feature/show-added-title` (#11). Merge master vào feature (`7fcc4fe`), kết hợp thành thông báo tiếng Việt kèm tên DVD, chạy test rồi commit. Sau đó revert merge bằng `git revert -m 1` (commit `4bb52f2`, PR #12) để thực hành; thông báo trở lại “Đã thêm đĩa vào giỏ hàng”.
+- Reflog là lịch sử cập nhật refs trong repo local, không tự push; có hạn giữ và chịu garbage collection. Cần tạo rescue branch trước khi object không còn reachable bị dọn. Thực hành: sau `--hard`, reflog còn `6b9810a`; tạo `rescue/reset-demo` trỏ lại commit đó.
+- Cách khác trên nhánh riêng: fetch, `git rebase origin/master`, sửa conflict, `git add`, `git rebase --continue`; dùng `--abort` để hủy khi cần. Không rebase nhánh đã chia sẻ khi chưa được đồng thuận.
+
+Issue ghi nhận lỗi tìm kiếm: https://github.com/babacnguyen2005-sketch/it3180--202416420--aims/issues/1 (đã đóng). Nhật ký: `docs/evidence/lab03.log`, `docs/evidence/lab03-limit-fail.log`, `docs/evidence/lab03-limit-pass.log`.

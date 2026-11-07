@@ -1,37 +1,23 @@
-# AIMS-mini – Use case
+# Use case AIMS-mini
 
-## Tác nhân
+Tác nhân: người mua, tương tác với giỏ và tìm DVD trong danh sách.
 
-- **Khách hàng**: người dùng thêm đĩa vào giỏ, xem giỏ, tìm kiếm và sắp xếp.
-- **Quản trị viên**: người cập nhật danh mục đĩa (mở rộng trong tương lai).
-
-## Use case
-
-| Mã | Use case | Tác nhân | Mô tả |
-| --- | --- | --- | --- |
-| UC01 | Thêm đĩa vào giỏ | Khách hàng | Thêm một DVD, giỏ tối đa 20 đĩa |
-| UC02 | Xem giỏ hàng | Khách hàng | In danh sách đĩa và tổng tiền |
-| UC03 | Tính tổng tiền | Khách hàng | Tính tổng giá của các đĩa trong giỏ |
-| UC04 | Tìm theo tựa đề | Khách hàng | Tìm các đĩa có tựa chứa từ khóa |
-| UC05 | Tìm theo thể loại | Khách hàng | Tìm các đĩa thuộc một thể loại |
-| UC06 | Sắp xếp giỏ hàng | Khách hàng | Sắp xếp theo tựa đề hoặc theo giá |
-| UC07 | Áp dụng giảm giá | Khách hàng | Tính tổng tiền sau khi giảm theo phần trăm |
-
-## Sơ đồ
-
-```text
-            +------------------+
-            |    Khách hàng    |
-            +------------------+
-                     |
-     +---------------+----------------+
-     |               |                |
- (UC01)          (UC02, UC03)     (UC04, UC05)
- Thêm đĩa         Xem giỏ /        Tìm kiếm
-                  tính tiền
-     |               |                |
-     +---------------+----------------+
-                     |
-              (UC06, UC07)
-         Sắp xếp / áp dụng giảm giá
+```mermaid
+flowchart LR
+    buyer[Người mua] --> add([Thêm DVD])
+    buyer --> view([Xem giỏ])
+    buyer --> total([Tính tổng])
+    buyer --> searchTitle([Tìm theo tên])
+    buyer --> searchCategory([Tìm theo thể loại])
+    buyer --> sort([Sắp xếp])
+    buyer --> discount([Áp dụng giảm giá])
+    view --> total
 ```
+
+- Thêm: chọn DVD, gọi `add_dvd`; giỏ tối đa 20 DVD, DVD thứ 21 bị từ chối (`False`).
+- Xem giỏ: `print_cart` in danh sách và tổng tiền, hoặc thông báo giỏ rỗng.
+- Tính tổng: cộng `cost` của các DVD trong giỏ.
+- Tìm theo tên: `search_by_title` nhận danh sách và từ khóa, trả các DVD có tựa chứa từ khóa, không phân biệt hoa thường.
+- Tìm theo thể loại: `search_by_category` khớp chính xác thể loại (phân biệt hoa thường).
+- Sắp xếp: `sort_by_title` / `sort_by_cost` trả danh sách mới đã sắp tăng dần.
+- Giảm giá: `total_cost_with_discount(percent)` với `percent` trong khoảng [0, 100].

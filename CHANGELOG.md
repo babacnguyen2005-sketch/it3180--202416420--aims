@@ -1,34 +1,32 @@
 # Changelog
 
-Mọi thay đổi đáng chú ý của dự án được ghi lại trong tệp này.
-
-Định dạng dựa trên [Keep a Changelog](https://keepachangelog.com/vi/1.1.0/) và dự án tuân theo [Semantic Versioning](https://semver.org/lang/vi/).
+Theo Keep a Changelog; phiên bản tuân theo SemVer. Ngày theo Asia/Ho_Chi_Minh.
 
 ## [Unreleased]
 
 ## [1.1.0] - 2026-11-07
 
-### Added
+### Fixed
+- Đã tích hợp bản vá tìm tên không phân biệt hoa thường của 1.0.1 vào dòng 1.1.0.
 
-- `Cart.sort_by_title()` và `Cart.sort_by_cost()` sắp xếp giỏ hàng.
-- `search_by_category()` tìm đĩa theo thể loại.
+### Added
+- Tìm kiếm theo thể loại khớp chính xác thể loại.
+- Sắp xếp giỏ tăng dần theo tên hoặc giá, trả danh sách mới.
 
 ## [1.0.1] - 2026-11-07
 
 ### Fixed
-
-- `search_by_title()` không phân biệt hoa thường.
+- `search_by_title()` tìm tên không phân biệt hoa thường (forward-port bản vá 1.0.x).
 
 ## [1.0.0] - 2026-11-07
 
 ### Added
-
-- `Cart.print_cart()` in giỏ hàng và tổng tiền.
-- `search_by_title()` tìm đĩa theo tựa đề.
-- `Cart.total_cost_with_discount()` tính tổng tiền sau giảm giá.
-- Pull request template và tài liệu use-case.
+- Mô hình DVD, giỏ hàng, thêm DVD, tính tổng và hiển thị giỏ.
+- Tìm kiếm theo tên (phân biệt hoa thường ở baseline này).
+- Tính tổng sau giảm giá với kiểm tra phần trăm 0–100.
+- Đóng gói `aims`, sơ đồ use case, tài liệu và kiểm thử unittest.
 
 ### Fixed
-
-- Giỏ hàng từ chối đĩa thứ 21 trở đi (`MAX_NUMBERS_ORDERED`).
-- Công thức giảm giá trả đúng số tiền sau giảm và kiểm tra phần trăm hợp lệ.
+- Từ chối DVD thứ 21, giữ giới hạn 20 DVD.
+- Công thức giảm giá trả đúng số tiền còn lại, kiểm tra phần trăm ngoài giới hạn.
+- Kết hợp xung đột thông báo thêm DVD, sau đó revert phần hiển thị tên DVD để thực hành; giữ thông báo tiếng Việt.

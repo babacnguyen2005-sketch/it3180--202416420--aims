@@ -1,0 +1,4 @@
+Workflow: .github/workflows/ci.yml
+Job: unit-tests
+Python: 3.12
+Local validation: 8 tests passed

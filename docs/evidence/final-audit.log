@@ -1,0 +1,13 @@
+$ python -m unittest discover -s tests -v
+test_add_dvd_until_full ... ok
+test_rejects_invalid_percent ... ok
+test_returns_discounted_total ... ok
+test_case_insensitive_match ... ok
+test_no_match ... ok
+test_find_by_category ... ok
+test_sort_by_cost ... ok
+test_sort_by_title ... ok
+
+Ran 8 tests in 0.001s
+
+OK
