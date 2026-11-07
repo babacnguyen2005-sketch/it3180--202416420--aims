@@ -7,7 +7,7 @@ Bài thực hành IT3180 – Quản lý cấu hình phần mềm với Git & Git
 ## Yêu cầu
 
 - Git >= 2.40
-- Python >= 3.10
+- Python >= 3.10 (chỉ dùng thư viện chuẩn)
 
 ## Cấu trúc dự án
 
